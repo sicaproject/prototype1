@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>logout</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    logged in as {{ user.first_name }} {{ user.last_name }}
+    {{ user.profile.gender }} {{ user.profile.birth_date }} {{ user.profile.typee }}
+    
+
+
+
+    {% else %}
+    first log in
+    {% endif %}
+
+    <form action="{% url 'logout' %}">
+        <input type="submit" value="logout">
+    </form>
+
+    {% if user.profile.typee == 'T' %}
+    <form action="">
+        <input type="submit" value="create class">
+    </form>
+    {% endif %}
+</body>
+</html>
