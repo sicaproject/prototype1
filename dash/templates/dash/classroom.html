@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom</title>
+    <link rel="stylesheet" href="{% static 'classroom/css/styleclass.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href = "{% static 'classroom/css/card.css' %}">
+</head>
+<body>
+    <form action="{% url 'logout' %}">
+        <input type="submit" value="logout">
+    </form>
+      
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <ul>
+             <li><a href="#">dashboard</a></li>
+            <li><a href="{% url 'qna' %}">QNA section</a></li>
+            <li><a href="#">Assignments</a></li>
+            <li><a href="#">Meeting</a></li>
+            </ul>
+        </div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; CLASSROOM  </span>
+        <div id="right">
+            <img src="" alt="" class="img-alpha">
+        </div>
+
+       <div class="odropdown" id="right" style="padding: 0px 50px 0px 0px;">
+           <!-- <button style="font-size: 30px; cursor: pointer; color: black; border-radius: 50%; background-color: white; " >&#x2b;</button> -->
+           <svg focusable="false" width="24" height="24" viewBox="0 0 24 24" style="padding: 7px 0 0 0;">
+            <path d="M20 13h-7v7h-2v-7H4v-2h7V4h2v7h7v2z"></path>
+           </svg>
+            <div class="odropdown-content">
+                <a href="#">JOIN CLASS</a>
+                <a href="#">CREATE CLASS</a>
+                <a href="#">Link 3</a>
+            </div>
+       </div>
+<!-- courses card starts here -->
+<section>
+        <div class="container"> 
+            <!-- <h1 class="heading">Meet The Team</h1>  -->
+                <div class="card-wrapper"> 
+                    <div class="card"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
+                        <h1>Michille Gomes</h1> 
+                        <p class="job-title">Lead Designer</p> 
+                        <p class="about">
+                        </p>
+                        <a href="{% url 'classs' %}" class="btn">Go to Class</a> 
+                        <ul class="social-media"> 
+                            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>  
+                        </ul> 
+                    </div> 
+
+                    <div class="card"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
+                        <h1>Michille Gomes</h1> 
+                        <p class="job-title">Lead Designer</p> 
+                        <p class="about"> 
+                        </p>
+                        <a href="{% url 'classs' %}" class="btn">Go to Class</a> 
+                        <ul class="social-media"> 
+                            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li> 
+                        <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>   
+                        </ul> 
+                    </div> 
+
+                    <div class="card"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
+                        <h1>Michille Gomes</h1> 
+                        <p class="job-title">Lead Designer</p> 
+                        <p class="about"> 
+                        </p>
+                        <a href="{% url 'classs' %}" class="btn">Go to Class</a> 
+                        <ul class="social-media"> 
+                            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li> 
+                        <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>   
+                        </ul> 
+                    </div> 
+
+                    <div class="card"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
+                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
+                        <h1>Michille Gomes</h1> 
+                        <p class="job-title">Lead Designer</p> 
+                        <p class="about"> 
+                        </p>
+                        <a href="{% url 'classs' %}" class="btn">Go to Class</a> 
+                        <ul class="social-media"> 
+                            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li> 
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li> 
+                        <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>   
+                        </ul> 
+                    </div> 
+
+
+
+                </div> 
+        </div>
+    </section>
+         <script src="{% static 'classroom/js/scriptclass.js' %}">  </script>
+
+</body>
+</html>

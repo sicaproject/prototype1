@@ -11,7 +11,7 @@ def login(request):
         user = auth.authenticate(username = email,password = password)
         if user is not None:
             auth.login(request,user)
-            return render(request,'accounts/temp.html')
+            return redirect('/dash/user1/')
         else:
             messages.info(request,'Invalid Credentials *_*')
             return render(request,'accounts/login.html')
