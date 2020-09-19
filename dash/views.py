@@ -9,7 +9,13 @@ def user1(request):
         return redirect('/account/login')
 
 def qna(request):
-    return render(request,'dash/qnapanel.html')
+    if request.user.is_authenticated:
+        return render(request,'dash/qnapanel.html')
+    else:
+        return redirect('/account/login')
 
 def classs(request):
-    return render(request,'dash/class.html')
+    if request.user.is_authenticated:
+        return render(request,'dash/class.html')
+    else:
+        return redirect('/account/login')
