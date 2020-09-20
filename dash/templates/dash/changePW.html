@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>changePW</title>
+    <link rel="stylesheet" href="{% static 'classroom/css/styleclass.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href = "{% static 'classroom/css/profile.css' %}">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <form action="{% url 'logout' %}">
+        <input type="submit" value="logout">
+    </form>
+      
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <ul>
+             <li><a href="{% url 'user1' %}">Dashboard</a></li>
+            <li><a href="{% url 'qna' %}">QNA section</a></li>
+            <li><a href="#">Assignments</a></li>
+            <li><a href="#">Meeting</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            </ul>
+        </div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; CHANGE PASSWORD  </span>
+        <div id="right">
+            <img src="" alt="" class="img-alpha">
+        </div>
+
+       <div class="odropdown" id="right" style="padding: 0px 50px 0px 0px;">
+           <!-- <button style="font-size: 30px; cursor: pointer; color: black; border-radius: 50%; background-color: white; " >&#x2b;</button> -->
+           <svg focusable="false" width="24" height="24" viewBox="0 0 24 24" style="padding: 7px 0 0 0;">
+            <path d="M20 13h-7v7h-2v-7H4v-2h7V4h2v7h7v2z"></path>
+           </svg>
+            <div class="odropdown-content">
+                <a href="#">JOIN CLASS</a>
+                <a href="#">CREATE CLASS</a>
+                <a href="#">Link 3</a>
+            </div>
+       </div>
+       <hr>
+
+<!-- change pw section starts here -->
+<section>
+       
+    <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+    <p class="text-center">Use the form below to change your password.</p>   
+        <p style="color:#FFFFFF;font-size:12px;">
+            {% if wp %}
+                <p>Wrong Password *_*</p>
+            {% endif %}
+        </p>
+    <form method="post" id="passwordForm">
+        {% csrf_token %}
+    <input type="password" class="input-lg form-control" name="pw" id="pw" placeholder="Current Password" autocomplete="off">
+        <br>
+    <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off">
+    <div class="row">
+    <div class="col-sm-6">
+    <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Characters Long<br>
+    <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase Letter
+    </div>
+    <div class="col-sm-6">
+    <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase Letter<br>
+    <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number
+    </div>
+    </div>
+    <input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
+    <div class="row">
+    <div class="col-sm-12">
+    <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords Match
+    </div>
+    </div>
+    <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Change Password">
+    </form>
+    </div><!--/col-sm-6-->
+    </div><!--/row-->
+    </div>
+ 
+</section>
+
+<script src="{% static 'classroom/js/scriptclass.js' %}">  </script>
+<script src="{% static 'classroom/js/changePW.js' %}">  </script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="{% static 'classroom/css/styleclass.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href = "{% static 'classroom/css/profile.css' %}">
@@ -28,7 +28,7 @@
             <li><a href="#">Profile</a></li>
             </ul>
         </div>
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; CLASSROOM  </span>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; PROFILE  </span>
         <div id="right">
             <img src="" alt="" class="img-alpha">
         </div>
@@ -44,6 +44,7 @@
                 <a href="#">Link 3</a>
             </div>
        </div>
+       <hr>
 
 <!-- profile section starts here -->
 <section>
@@ -79,7 +80,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
-                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Change Password"/>
+                   <button class="profile-edit-btn" name="btnAddMore"><a href="{% url 'changePW' %}">Change Password</a></button>
                 </div>
             </div>
             <div class="col-md-8">
