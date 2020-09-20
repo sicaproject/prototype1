@@ -19,3 +19,10 @@ def classs(request):
         return render(request,'dash/class.html')
     else:
         return redirect('/account/login')
+
+
+def profile(request):
+    if request.user.is_authenticated:
+        return render(request,'dash/profile.html')
+    else:
+        return redirect('/account/login')
