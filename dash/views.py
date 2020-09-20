@@ -29,6 +29,12 @@ def profile(request):
     else:
         return redirect('/account/login')
 
+def editprofile(request):
+    if request.user.is_authenticated:
+        return render(request,'dash/editprofile.html')
+    else:
+        return redirect('/account/login')
+
 def changePW(request):
     if request.user.is_authenticated:
         pw = request.POST.get('pw',False)

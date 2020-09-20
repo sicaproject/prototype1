@@ -6,5 +6,6 @@ urlpatterns = [
     path("qna/", views.qna, name = 'qna'),
     path("classs/", views.classs, name = 'classs'),
     path("profile/",views.profile,name = 'profile'),
+    path("editprofile/",views.editprofile,name = 'editprofile'),
     path("changePW/",views.changePW,name = 'changePW')
 ]
