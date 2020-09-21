@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QnA</title>
+    <title>Edit Profile</title>
     <link rel="stylesheet" href="{% static 'classroom/css/styleclass.css' %}">
     <link rel="stylesheet" href = "{% static 'classroom/css/profile.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -68,16 +68,23 @@
         </div>
     <div class="col-md-5 ">
         <div class="p-5 py-5">
-            <div class="row mt-2">
-                <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First Name" value=""></div>
-                <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-12"><label class="labels">DOB</label><input type="text" class="form-control" placeholder="Birth Date" value=""></div>
-            </div>
-            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+            <form action="{% url 'editprofile' %}" method="POST">
+                {% csrf_token %}
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name"></div>
+                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name"></div>
+                </div>
+           
+                <!-- <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">DOB</label><input type="text" class="form-control" placeholder="Birth Date" value=""></div>
+                </div> -->
+           
+            
+            <div class="mt-5 text-center"><input class="btn btn-primary profile-button" type="submit"></input></div>
         </div>
     </div>
+</form>
+
     
     
 

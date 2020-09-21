@@ -31,7 +31,21 @@ def profile(request):
 
 def editprofile(request):
     if request.user.is_authenticated:
-        return render(request,'dash/editprofile.html')
+        print('OK')
+        if request.method == "POST":
+            #firstname = request.POST.get('firstname',False)
+            #lastname = request.POST.get('lastname',False)
+            firstname = request.POST['firstname']
+            lastname = request.POST['lastname']
+            print(firstname," ",lastname)
+            u = request.user
+            u.first_name = firstname
+            u.last_name = lastname 
+            print(u.first_name," ",u.last_name)           
+            u.save()
+            return render(request,'dash/profile.html')
+        else:
+            return render(request,'dash/editprofile.html')
     else:
         return redirect('/account/login')
 
