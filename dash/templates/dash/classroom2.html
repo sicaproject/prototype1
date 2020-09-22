@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom</title>
+    <title>Student Classroom</title>
     <link rel="stylesheet" href="{% static 'classroom/css/styleclass.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href = "{% static 'classroom/css/card.css' %}">
@@ -47,11 +47,12 @@
         <div class="container"> 
             <!-- <h1 class="heading">Meet The Team</h1>  -->
                 <div class="card-wrapper"> 
+                {% for i in data %}
                     <div class="card"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
-                        <h1>Michille Gomes</h1> 
-                        <p class="job-title">Lead Designer</p> 
+                        <h1>{{ i.clid.tid.first_name }}</h1> 
+                        <p class="job-title">{{ i.clid.subject }}</p> 
                         <p class="about">
                         </p>
                         <a href="{% url 'classs' %}" class="btn">Go to Class</a> 
@@ -62,8 +63,9 @@
                             <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>  
                         </ul> 
                     </div> 
+                {% endfor %}
 
-                    <div class="card"> 
+                    <!-- <div class="card"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
                         <h1>Michille Gomes</h1> 
@@ -77,9 +79,9 @@
                             <li><a href="#"><i class="fab fa-instagram"></i></a></li> 
                         <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>   
                         </ul> 
-                    </div> 
+                    </div>  -->
 
-                    <div class="card"> 
+                    <!-- <div class="card"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
                         <h1>Michille Gomes</h1> 
@@ -93,9 +95,9 @@
                             <li><a href="#"><i class="fab fa-instagram"></i></a></li> 
                         <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>   
                         </ul> 
-                    </div> 
+                    </div>  -->
 
-                    <div class="card"> 
+                    <!-- <div class="card"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
                         <h1>Michille Gomes</h1> 
@@ -109,7 +111,7 @@
                             <li><a href="#"><i class="fab fa-instagram"></i></a></li> 
                         <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>   
                         </ul> 
-                    </div> 
+                    </div>  -->
 
 
 

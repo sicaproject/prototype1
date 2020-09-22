@@ -14,6 +14,9 @@ class Profile(models.Model):
     typee = models.TextField(max_length=50, choices = USER_TYPE,default = 'S' ,blank=True)
     birth_date = models.DateField(auto_now_add=False,auto_now=False, blank=True,null=True)
 
+    def __str__(self):
+        return self.user.first_name
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

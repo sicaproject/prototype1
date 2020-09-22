@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>logout</title>
+</head>
+<body>
+    Class Created successfully by :- <br>
+    {% if user.is_authenticated %}
+    logged in as {{ user.first_name }} {{ user.last_name }}
+    {{ user.profile.gender }} {{ user.profile.birth_date }} {{ user.profile.typee }}
+    
+
+
+
+    {% else %}
+    first log in
+    {% endif %}
+    <br><br>
+    Class details :- <br>
+{% for i in data %}
+    {{ i.name }}<br>
+    {{ i.section }}<br>
+    {{ i.subject }}<br>
+{% endfor %}
+    <form action="{% url 'logout' %}">
+        <input type="submit" value="logout">
+    </form>
+
+
+</body>
+</html>
