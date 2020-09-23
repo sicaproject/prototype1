@@ -5,18 +5,34 @@ from .models import classsm,classsj
 
 
 # Create your views here.
+class my_dictionary(dict): 
+  
+    # __init__ function 
+    def __init__(self): 
+        self = dict() 
+          
+    # Function to add key:value 
+    def add(self, key, value): 
+        self[key] = value
+
 def user1(request):
     if request.user.is_authenticated:
         if request.user.profile.typee == 'S':
             u = request.user
             ch = classsj.objects.filter(sid = u.id)
-            # for i in ch:
-            #     print(i.id)
-            #     print(i.clid.tid)
-            #     print(i.sid.first_name)
-            context = {'data':ch}
+            ts = my_dictionary() 
+            for i in ch:
+                ts.add(i.clid.id,classsj.objects.filter(clid=i.clid.id).count())
+            context = {'data':ch,'ts':ts}
             return render(request,'dash/classroom2.html',context)
-        return render(request,'dash/classroom.html')
+        else:
+            u = request.user
+            ch = classsm.objects.filter(tid = u.id)
+            ts = my_dictionary() 
+            for i in ch:
+                ts.add(i.id,classsj.objects.filter(clid=i.id).count())
+            context = {'data':ch,'ts':ts}
+            return render(request,'dash/classroom.html',context)
     else:
         return redirect('/account/login')
 
