@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class</title>
+    <title>Assignment</title>
     <link rel="stylesheet" href="{% static 'classroom/css/styleclass.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -24,10 +24,11 @@
              <li><a href="{% url 'logout' %}">Logout</a></li>
              </ul>
         </div>
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; CLASS  </span>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Assignment  </span>
         <div id="right">
             <img src="" alt="" class="img-alpha">
         </div>
+
      
         <hr>
     <div>
@@ -36,7 +37,7 @@
     <div style="width: 75%; float: left;">
 
         <div style="height: 30vh; background-image:url({% static 'classroom/img/banner.jpg' %}); background-size: cover; color: antiquewhite; border-radius: 25px; text-align: center;">
-            <h1>Class Name</h1>    
+            <h1>Class Name - Assignment</h1>    
         </div>
     <div>
         
@@ -50,33 +51,33 @@
               Action
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{% url 'assign' %}">Assignments</a>
-              <a class="dropdown-item" href="#">Quiz</a>
+              <a class="dropdown-item" href="{% url 'classs' %}">Announcements</a>
+              <a class="dropdown-item" href="#">Quiz </a>
               <a class="dropdown-item" href="#">Something else</a>
             </div>
           </div>
         </div>
         <div>
           <br>
-        
-          <div class="card" >
+        <div class="card" >
             <div class="card-header">
-              Announcement
+              Assignment
             </div>
             <div class="card-body">
-              <h5 class="card-title">Announcement Name</h5>
-              <p class="card-text">Announcement Description</p>
+              <h5 class="card-title">Assignment Name</h5>
+              <p class="card-text">Assignment Description</p>
               <a href="#" class="btn btn-primary">View</a>
             </div>
           </div>
           <br>
+          
           <div class="card" >
             <div class="card-header">
-              Announcement
+                Assignment
             </div>
             <div class="card-body">
-              <h5 class="card-title">Announcement Name</h5>
-              <p class="card-text">Announcement Description</p>
+              <h5 class="card-title">Assignment Name</h5>
+              <p class="card-text">Assignment Description</p>
               <a href="#" class="btn btn-primary">View</a>
             </div>
           </div>

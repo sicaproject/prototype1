@@ -42,6 +42,12 @@ def qna(request):
     else:
         return redirect('/account/login')
 
+def assign(request):
+    if request.user.is_authenticated:
+        return render(request,'dash/assign.html')
+    else:
+        return redirect('/account/login')
+
 def classs(request):
     if request.user.is_authenticated:
         return render(request,'dash/class.html')
