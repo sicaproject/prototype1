@@ -33,7 +33,7 @@
             <path d="M20 13h-7v7h-2v-7H4v-2h7V4h2v7h7v2z"></path>
            </svg>
             <div class="odropdown-content">
-                <a href="{% url 'join_class' %}">JOIN CLASS</a>
+                {% if user.profile.typee == 'S' %}<a href="{% url 'join_class' %}">JOIN CLASS</a>{% endif %}
                 {% if user.profile.typee == 'T' %}<a href="{% url 'make_class' %}">CREATE CLASS</a>{% endif %}
                 <a href="#">Link 3</a>
             </div>

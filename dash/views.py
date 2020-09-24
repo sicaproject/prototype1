@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import classsm,classsj
+from .models import classsm,classsj,work,classwork
 
 
 # Create your views here.
