@@ -36,7 +36,7 @@
     <div style="width: 75%; float: left;">
 
         <div style="height: 30vh; background-image:url({% static 'classroom/img/banner.jpg' %}); background-size: cover; color: antiquewhite; border-radius: 25px; text-align: center;">
-            <h1>Class Name</h1>    
+            <h1>{{ data.name }}</h1>    
         </div>
     <div>
         
@@ -59,7 +59,8 @@
           {% if user.profile.typee == 'T' %}
           <!-- Announcement form -->
           <div class="modal fade" id="Announcement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <form >
+          <form action="{% url 'create_work' data.id %}" method="POST">
+            {% csrf_token %}
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header text-center">
@@ -68,7 +69,9 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
               <div class="modal-body mx-3">
+
                 <div class="md-form mb-5">
                   <i class="fas fa-envelope prefix grey-text"></i>
                   <input type="text" name="announcement" class="form-control validate">
@@ -82,9 +85,11 @@
                 </div>
 
               </div>
+
               <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-default">Post</button>
+                <input type="submit" class="btn btn-default" value="Post">
               </div>
+
             </div>
           </div>
           </form>
@@ -132,6 +137,24 @@
             </div>
           </div>
           <br>
+          {% if classcontent %}
+          {% for obj in classcontent %}
+                <div class="card" >
+                  <div class="card-header">
+                    Announcement
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ obj.wname }}</h5>
+                    <p class="card-text">Announcement Description</p>
+                    <a href="#" class="btn btn-primary">View</a>
+                  </div>
+                </div>
+            	<br>
+
+          {% endfor %}
+          {% else %}
+          No announcement yet
+          {% endif %}
     </div>
     </div>
 

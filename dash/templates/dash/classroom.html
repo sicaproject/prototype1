@@ -55,7 +55,9 @@
                         <p class="job-title">{{ i.subject }}</p> 
                         <p class="about">
                         </p>
-                        <a href="{% url 'classs' %}" class="btn">Go to Class</a> 
+                        <form action="{% url 'classs' i.id %}" method="get">
+                            <input type="submit" class="btn" value="Go to Class">
+                        </form>
                         <ul class="social-media"> 
                             <li style="font-size: small;"><b>Class id : {{ i.id }}</b></li> 
                             <li></li> 

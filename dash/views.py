@@ -48,9 +48,26 @@ def assign(request):
     else:
         return redirect('/account/login')
 
-def classs(request):
+def classs(request,pkid):
     if request.user.is_authenticated:
-        return render(request,'dash/class.html')
+        obj = classsm.objects.get(pk=pkid)
+        objclasswork = classwork.objects.filter(clid=pkid)
+        print(objclasswork)
+        context = {'data':obj,'classcontent':objclasswork}
+        return render(request,'dash/class.html',context)
+    else:
+        return redirect('/account/login')
+
+def create_work(request,pkid):
+    if request.user.is_authenticated:
+        announcement = request.POST['announcement']
+        announcement_doc = request.POST['announcement_doc']
+        objclass = classsm.objects.get(pk=pkid)
+        obj = work.objects.get(pk=1)
+
+        cont_obj = classwork(clid = objclass, wtype=obj , wname = announcement , wsub = announcement_doc)
+        cont_obj.save()
+        return redirect('/dash/user1/')
     else:
         return redirect('/account/login')
 
