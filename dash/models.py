@@ -25,4 +25,4 @@ class classwork(models.Model):
     clid = models.ForeignKey(classsm, on_delete=models.CASCADE)
     wtype = models.ForeignKey(work, on_delete = models.CASCADE)
     wname = models.TextField()
-    wsub = models.FileField(null="True")
+    #wsub = models.FileField(null="True")

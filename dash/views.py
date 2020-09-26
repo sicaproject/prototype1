@@ -42,17 +42,19 @@ def qna(request):
     else:
         return redirect('/account/login')
 
-def assign(request):
+def assign(request,pkid):
     if request.user.is_authenticated:
-        return render(request,'dash/assign.html')
+        obj = classsm.objects.get(pk=pkid)
+        objclasswork = classwork.objects.filter(clid=pkid,wtype = 2)
+        context = {'data':obj,'classcontent':objclasswork}
+        return render(request,'dash/assign.html',context)
     else:
         return redirect('/account/login')
 
 def classs(request,pkid):
     if request.user.is_authenticated:
         obj = classsm.objects.get(pk=pkid)
-        objclasswork = classwork.objects.filter(clid=pkid)
-        print(objclasswork)
+        objclasswork = classwork.objects.filter(clid=pkid,wtype = 1)
         context = {'data':obj,'classcontent':objclasswork}
         return render(request,'dash/class.html',context)
     else:
@@ -61,15 +63,38 @@ def classs(request,pkid):
 def create_work(request,pkid):
     if request.user.is_authenticated:
         announcement = request.POST['announcement']
-        announcement_doc = request.POST['announcement_doc']
+        #announcement_doc = request.POST['announcement_doc']
         objclass = classsm.objects.get(pk=pkid)
         obj = work.objects.get(pk=1)
 
-        cont_obj = classwork(clid = objclass, wtype=obj , wname = announcement , wsub = announcement_doc)
+        cont_obj = classwork(clid = objclass, wtype=obj , wname = announcement)
         cont_obj.save()
         return redirect('/dash/user1/')
     else:
         return redirect('/account/login')
+
+def del_work(request):
+    if request.user.is_authenticated:
+        pkid = int(request.POST.get('announcement_id',False))
+        instance = classwork.objects.get(id=pkid)
+        instance.delete()
+        return redirect('/dash/user1/')
+    else:
+        return redirect('/account/login')
+
+def create_a_work(request,pkid):
+    if request.user.is_authenticated:
+        Assignments = request.POST['Assignments']
+        #announcement_doc = request.POST['announcement_doc']
+        objclass = classsm.objects.get(pk=pkid)
+        obj = work.objects.get(pk=2)
+
+        cont_obj = classwork(clid = objclass, wtype=obj , wname = Assignments)
+        cont_obj.save()
+        return redirect('/dash/user1/')
+    else:
+        return redirect('/account/login')
+
 
 
 def profile(request):
