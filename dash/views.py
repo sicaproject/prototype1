@@ -63,12 +63,19 @@ def classs(request,pkid):
 def create_work(request,pkid):
     if request.user.is_authenticated:
         announcement = request.POST['announcement']
-        #announcement_doc = request.POST['announcement_doc']
-        objclass = classsm.objects.get(pk=pkid)
-        obj = work.objects.get(pk=1)
-
-        cont_obj = classwork(clid = objclass, wtype=obj , wname = announcement)
-        cont_obj.save()
+        obj = classsm.objects.get(pk=pkid)
+        objclasswork = classwork.objects.filter(clid=pkid,wtype = 2)
+        context = {'data':obj,'classcontent':objclasswork}
+        if request.method == 'POST':            
+            s = request.FILES['announcement_doc']
+            objclass = classsm.objects.get(pk=pkid)
+            obj = work.objects.get(pk=1)
+            try:
+                cont_obj = classwork(clid = objclass, wtype=obj , wname = announcement, filess = s)
+                cont_obj.save()
+            except:
+                print("Failed due to exception")
+            return redirect('/dash/user1/')
         return redirect('/dash/user1/')
     else:
         return redirect('/account/login')
