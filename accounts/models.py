@@ -13,6 +13,7 @@ class Profile(models.Model):
     gender = models.TextField(max_length=50, choices = GENDER_CHOICE ,blank=True)
     typee = models.TextField(max_length=50, choices = USER_TYPE,default = 'S' ,blank=True)
     birth_date = models.DateField(auto_now_add=False,auto_now=False, blank=True,null=True)
+    profile_pic = models.ImageField(default='profile1.jpg',null=True,blank=True)
 
     def __str__(self):
         return self.user.first_name

@@ -27,7 +27,7 @@
         </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Assignment</span>
         <div id="right">
-            <img src="" alt="" class="img-alpha">
+            <img src="{{ request.user.profile.profile_pic.url }}" alt="" class="img-alpha">
         </div>
 
      
@@ -78,6 +78,8 @@
                   </div>
                   <div class="card-body">
                     <p class="card-text">{{ obj.wname }}</p>
+                    <a href="{{ obj.filess.url }}">download</a>
+                    <!-- <iframe src="{{ obj.filess.url }}" style="width:600px; height:500px;" frameborder="0"></iframe> -->
                   </div>
                 </div>
             	<br>

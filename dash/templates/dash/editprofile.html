@@ -26,7 +26,7 @@
     </div>
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Edit Profile  </span>
     <div id="right">
-        <img src="" alt="" class="img-alpha">
+        <img src="{{ request.user.profile.profile_pic.url }}" alt="" class="img-alpha">
     </div>
     
    <!-- <div class="dropdown" id="right">
@@ -42,21 +42,24 @@
   </div> -->
  
     <hr>
-    <div class="row">
-    <div class="col-md-4">
-        <div class="profile-img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-            <div class="file btn btn-lg btn-primary">
-                Change Photo
-                <input type="file" name="file"/>
-            </div>
-        </div>
-    </div>
-        </div>
-    <div class="col-md-5 ">
-        <div class="p-5 py-5">
-            <form action="{% url 'editprofile' %}" method="POST">
+    
+    
+            <form action="{% url 'editprofile' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{{ request.user.profile.profile_pic.url }}" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 ">
+                    <div class="p-5 py-5">
                 <div class="row mt-2">
                     <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name"></div>
                     <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name"></div>

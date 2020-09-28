@@ -24,7 +24,7 @@
         </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; CLASSROOM  </span>
         <div id="right">
-            <img src="" alt="" class="img-alpha">
+            <img src="{{ request.user.profile.profile_pic.url }}" alt="" class="img-alpha">
         </div>
         
         
@@ -49,8 +49,8 @@
                 <div class="card-wrapper"> 
                     {% for i in data %}
                     <div class="card"> 
-                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
-                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
+                        <img src="https://i.pinimg.com/originals/92/59/65/9259654da727c0f2adcc1721ee1d1c7c.jpg" alt="card background" class="card-img"> 
+                        <img src="{{ request.user.profile.profile_pic.url }}" alt="profile image" class="profile-img"> 
                         <h1>{{ i.tid.first_name }}</h1> 
                         <p class="job-title">{{ i.subject }}</p> 
                         <p class="about">

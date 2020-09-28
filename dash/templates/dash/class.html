@@ -27,7 +27,7 @@
         </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; CLASS  </span>
         <div id="right">
-            <img src="" alt="" class="img-alpha">
+            <img src="{{ request.user.profile.profile_pic.url }}" alt="" class="img-alpha">
         </div>
      
         <hr>
@@ -98,7 +98,7 @@
 
 
         <div class="modal fade" id="Assignments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <form action="{% url 'create_a_work' data.id %}" method="POST">
+          <form action="{% url 'create_a_work' data.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -116,13 +116,13 @@
                   <input type="text" name="Assignments" class="form-control validate">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Assignments</label>
                 </div>
-                <!--
+                
                 <div class="md-form mb-4">
                   <i class="fas fa-lock prefix grey-text"></i>
-                  <input type="file" name="announcement_doc" class="form-control validate">
+                  <input type="file" name="assignment_doc" class="form-control validate" required>
                   <label data-error="wrong" data-success="right" for="defaultForm-pass">Attachment (leave empty if none)</label>
                 </div>
-              -->
+             
               </div>
 
               <div class="modal-footer d-flex justify-content-center">

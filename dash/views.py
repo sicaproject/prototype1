@@ -85,17 +85,20 @@ def del_work(request):
 def create_a_work(request,pkid):
     if request.user.is_authenticated:
         Assignments = request.POST['Assignments']
-        #announcement_doc = request.POST['announcement_doc']
-        objclass = classsm.objects.get(pk=pkid)
-        obj = work.objects.get(pk=2)
-
-        cont_obj = classwork(clid = objclass, wtype=obj , wname = Assignments)
-        cont_obj.save()
+        if request.method == 'POST':
+            s = request.FILES['assignment_doc']
+            objclass = classsm.objects.get(pk=pkid)
+            obj = work.objects.get(pk=2)
+            try:
+                cont_obj = classwork(clid = objclass, wtype=obj , wname = Assignments, filess = s)
+                cont_obj.save()
+            except:
+                print("Failed due to exception")
+            return redirect('/dash/user1/')
+        
         return redirect('/dash/user1/')
     else:
         return redirect('/account/login')
-
-
 
 def profile(request):
     if request.user.is_authenticated:
@@ -111,10 +114,12 @@ def editprofile(request):
             #lastname = request.POST.get('lastname',False)
             firstname = request.POST['firstname']
             lastname = request.POST['lastname']
+            propic = request.FILES['file']
             print(firstname," ",lastname)
             u = request.user
             u.first_name = firstname
             u.last_name = lastname 
+            u.profile.profile_pic = propic
             print(u.first_name," ",u.last_name)           
             u.save()
             return render(request,'dash/profile.html')
