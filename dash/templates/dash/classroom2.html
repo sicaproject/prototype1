@@ -23,7 +23,7 @@
         </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; CLASSROOM  </span>
         <div id="right">
-            <img src="" alt="" class="img-alpha">
+            <img src="{{ request.user.profile.profile_pic.url }}" alt="" class="img-alpha">
         </div>
         
         
@@ -39,7 +39,7 @@
             </div>
        </div>
        
-
+       <br><br>
        <hr>
 <!-- courses card starts here -->
 <section>
@@ -49,7 +49,7 @@
                 {% for i in data %}
                     <div class="card"> 
                         <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="card background" class="card-img"> 
-                        <img src="{% static 'classroom/img/wallpaperflare.com_wallpaper.jpg' %}" alt="profile image" class="profile-img"> 
+                        <img src="{{ i.clid.tid.profile.profile_pic.url }}" alt="profile image" class="profile-img"> 
                         <h1>{{ i.clid.tid.first_name }}</h1> 
                         <p class="job-title">{{ i.clid.subject }}</p> 
                         <p class="about">

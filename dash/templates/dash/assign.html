@@ -86,7 +86,11 @@
 
           {% endfor %}
           {% else %}
-          No Assignments yet
+          {% if user.profile.typee == 'T' %}
+          <p>No Assignments yet</p>
+          {% else %}
+          <p>Hurray, No assignments</p>
+          {% endif %}
           {% endif %}
     
     </div>
