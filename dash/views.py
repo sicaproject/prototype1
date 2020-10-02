@@ -89,6 +89,15 @@ def del_work(request):
     else:
         return redirect('/account/login')
 
+def assignment(request,pkid,aid):
+    if request.user.is_authenticated:
+        obj = classsm.objects.get(pk=pkid)
+        a_obj = classwork.objects.get(pk=aid)
+        context = {'data':obj,'a_obj':a_obj}
+        return render(request,'dash/assignment.html',context)
+    else:
+        return redirect('/account/login')
+
 def create_a_work(request,pkid):
     if request.user.is_authenticated:
         Assignments = request.POST['Assignments']

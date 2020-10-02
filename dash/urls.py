@@ -13,5 +13,6 @@ urlpatterns = [
     path("join_class/",views.join_class,name = 'join_class'), 
     path("create_work/<int:pkid>",views.create_work,name="create_work"), 
     path("create_a_work/<int:pkid>",views.create_a_work,name="create_a_work"),
+    path("assignment/<int:pkid>/<int:aid>",views.assignment,name="assignment"), 
     path("del_work",views.del_work,name="del_work")    
 ]
