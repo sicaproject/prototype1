@@ -52,9 +52,7 @@
               Action
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{% url 'classs' data.id %}">Announcements</a>
-              <a class="dropdown-item" href="#">Quiz </a>
-              <a class="dropdown-item" href="#">Something else</a>
+              <a class="dropdown-item" href="{% url 'assign' data.id %}">Back</a>
             </div>
           </div>
         </div>
@@ -62,7 +60,7 @@
 
      <!-- Submittion form -->
      <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'submits' data.id a_obj.id %}" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -116,9 +114,14 @@
                   <div class="card-body">
                     <p class="card-text">{{ a_obj.wname }}</p>
                     <a href="{{ a_obj.filess.url }}" style="float: left;">Download Attachment</a>
+                    {% if s_obj %}
+                    <p style="color: chartreuse; float: right;">Submitted</p>
+                    {% else %}
+                    <p style="color: crimson; float: right;"> Not Submitted</p>
                     <div class="text-center" style="float: right;">
                         <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#submit" style="border: rgba(0, 0, 0, 0.1  ) solid; color: rgba(0, 0, 0, 0.5);">Create Submittion</a>
                     </div>
+                    {% endif %}
                 </div>
 
     

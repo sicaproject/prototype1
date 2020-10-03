@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import classsm,classsj,work,classwork
+import traceback 
+from .models import classsm,classsj,work,classwork,submit
 
 
 # Create your views here.
@@ -80,6 +81,25 @@ def create_work(request,pkid):
     else:
         return redirect('/account/login')
 
+
+def submits(request,pkid,aid):
+    if request.user.is_authenticated:
+        if request.method == 'POST':        
+            stxt = request.POST['submit_text']    
+            s = request.FILES['submit_doc']
+            objclass = classwork.objects.get(pk=aid)
+            u = request.user
+            try:
+                cont_obj = submit(cwid = objclass, sid = u , stext = stxt, sfile = s)
+                cont_obj.save()
+            except:
+                print("Failed due to exception")
+                traceback.print_exc() 
+            return redirect('/dash/user1/')
+        return redirect('/dash/user1/')
+    else:
+        return redirect('/account/login')
+
 def del_work(request):
     if request.user.is_authenticated:
         pkid = int(request.POST.get('announcement_id',False))
@@ -93,7 +113,9 @@ def assignment(request,pkid,aid):
     if request.user.is_authenticated:
         obj = classsm.objects.get(pk=pkid)
         a_obj = classwork.objects.get(pk=aid)
-        context = {'data':obj,'a_obj':a_obj}
+        uid = request.user.id
+        s_obj = submit.objects.filter(cwid = aid,sid = uid)
+        context = {'data':obj,'a_obj':a_obj,'s_obj':s_obj}
         return render(request,'dash/assignment.html',context)
     else:
         return redirect('/account/login')

@@ -26,3 +26,9 @@ class classwork(models.Model):
     wtype = models.ForeignKey(work, on_delete = models.CASCADE)
     wname = models.TextField()
     filess = models.FileField(null=True)
+
+class submit(models.Model):
+    cwid = models.ForeignKey(classwork, on_delete=models.CASCADE)
+    sid = models.ForeignKey(User, on_delete=models.CASCADE)
+    stext = models.TextField()
+    sfile = models.FileField(null=True)
