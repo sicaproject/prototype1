@@ -58,8 +58,8 @@
                         <ul class="social-media"> 
                             <li style="font-size: small;"><b>Class id : {{ i.clid.id }}</b></li> 
                             <li></li> 
-                            <li></li> 
                             <li style="font-size: small;"><b>Total students : {% for key,value in ts.items %}{% if key == i.clid.id %}{{ value }}{% endif %}{% endfor %}</b></li>  
+                            <li><a href="{% url 'leave_class' i.clid.id %}"><i class="fas fa-arrow-alt-circle-right"></i></a></li> 
                         </ul> 
                     </div> 
                 {% endfor %}

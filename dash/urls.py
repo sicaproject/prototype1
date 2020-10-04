@@ -16,5 +16,6 @@ urlpatterns = [
     path("submits/<int:pkid>/<int:aid>",views.submits,name="submits"),
     path("assignment/<int:pkid>/<int:aid>",views.assignment,name="assignment"), 
     path("del_work",views.del_work,name="del_work"),
-    path("eval_score",views.eval_score,name="eval_score")    
+    path("eval_score",views.eval_score,name="eval_score"),
+    path("leave_class/<int:pkid>",views.leave_class,name="leave_class")
 ]

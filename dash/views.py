@@ -250,3 +250,14 @@ def join_class(request):
             return render(request,'dash/joincl.html')
     else:
         return redirect('/account/login')
+
+def leave_class(request,pkid):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            return render(request,'dash/leave_class.html')
+        else:
+            ch = classsj.objects.filter(id = pkid)
+            print(ch)
+            return render(request,'dash/leave_class.html',{'l':pkid})
+    else:
+        return redirect('/account/login')

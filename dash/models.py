@@ -27,6 +27,10 @@ class classwork(models.Model):
     wname = models.TextField()
     filess = models.FileField(null=True)
 
+    def delete(self, *args, **kwargs):
+        self.filess.delete()
+        super().delete(*args, **kwargs)
+
 class submit(models.Model):
     cwid = models.ForeignKey(classwork, on_delete=models.CASCADE)
     sid = models.ForeignKey(User, on_delete=models.CASCADE)
