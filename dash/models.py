@@ -32,3 +32,4 @@ class submit(models.Model):
     sid = models.ForeignKey(User, on_delete=models.CASCADE)
     stext = models.TextField()
     sfile = models.FileField(null=True)
+    score = models.IntegerField(default = 0)

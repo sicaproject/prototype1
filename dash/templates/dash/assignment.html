@@ -95,6 +95,7 @@
         </div>
         </form>
       </div>
+      
 
       {% if user.profile.typee == 'T' %}
       <br>
@@ -102,11 +103,78 @@
                 <br>
                 <div style="float: left;">
                 <h6>Following students submitted the Assignment</h6>
-                <ol>
-                {% for obj in stud %}
-                  <li>{{ obj.sid.first_name }} {{ obj.sid.last_name }}  <a href="{{ obj.sfile.url }}">Download Submission</a></li>
-                {% endfor %}
-                </ol>
+                <table>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Assignment Text</th>
+                        <th scope="col">Assignment File</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Evaluate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for obj in stud %}
+
+                      
+       <!-- Score form -->
+       <div class="modal fade" id="score" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form action="{% url 'eval_score' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Score</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body mx-3">
+
+              <div class="md-form mb-5">
+                <i class="fas fa-envelope prefix grey-text"></i>
+                <input type="text" name="score" class="form-control validate">
+                <label data-error="wrong" data-success="right" for="defaultForm-email">Ad Score</label>
+              </div>            
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+              <input type="submit" class="btn btn-default" value="Post">
+            </div>
+
+          </div>
+        </div>
+        </form>
+      </div>
+
+                      <tr>
+                        <td>{{ obj.sid.first_name }} {{ obj.sid.last_name }}</td>
+                        <td>{{ obj.stext }}</td>
+                        <td><a href="{{ obj.sfile.url }}">Download Submission</a></td>
+                        <td>{{ obj.score }}</td>
+                        <td>
+                          <form action="{% url 'eval_score' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ obj.id }}" name="submit_id">
+                                           
+                                <div class="md-form mb-5">
+                                  <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Score</label> -->
+                                  <input type="text" name="score" class="form-control validate"><br>  
+                                  <input type="submit" class="btn btn-primary" value="Post">
+                              </div>
+                  
+                          </form>
+                  
+                        </td>
+                      </tr> 
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+                </table>
+                
                 </div>
                 <!--
                 <div style="float: right;">
@@ -131,6 +199,9 @@
                     <p class="card-text">{{ a_obj.wname }}</p>
                     <a href="{{ a_obj.filess.url }}" style="float: left;">Download Attachment</a>
                     {% if s_obj %}
+                    {% for i in s_obj %}
+                    <p style="float: right;">Score: {{ i.score }}</p>
+                    {% endfor %}
                     {% else %}
                     <div class="text-center" style="float: right;">
                         <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#submit" style="border: rgba(0, 0, 0, 0.1  ) solid; color: rgba(0, 0, 0, 0.5);">Create Submittion</a>

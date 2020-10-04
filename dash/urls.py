@@ -15,5 +15,6 @@ urlpatterns = [
     path("create_a_work/<int:pkid>",views.create_a_work,name="create_a_work"),
     path("submits/<int:pkid>/<int:aid>",views.submits,name="submits"),
     path("assignment/<int:pkid>/<int:aid>",views.assignment,name="assignment"), 
-    path("del_work",views.del_work,name="del_work")    
+    path("del_work",views.del_work,name="del_work"),
+    path("eval_score",views.eval_score,name="eval_score")    
 ]

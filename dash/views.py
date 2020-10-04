@@ -126,6 +126,17 @@ def assignment(request,pkid,aid):
     else:
         return redirect('/account/login')
 
+def eval_score(request):
+    if request.user.is_authenticated:
+        pkid = int(request.POST.get('submit_id',False))
+        instance = submit.objects.get(id=pkid)
+        print(instance.stext)
+        instance.score = int(request.POST.get('score',False))
+        instance.save()
+        return redirect('/dash/user1/')
+    else:
+        return redirect('/account/login')
+
 def create_a_work(request,pkid):
     if request.user.is_authenticated:
         Assignments = request.POST['Assignments']
