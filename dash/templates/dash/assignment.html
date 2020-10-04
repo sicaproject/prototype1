@@ -96,35 +96,49 @@
         </form>
       </div>
 
-
+      {% if user.profile.typee == 'T' %}
+      <br>
+                <h6>{{stud_c}} students of {{ t_ctr }} Submitted.</h6>
+                <br>
+                <div style="float: left;">
+                <h6>Following students submitted the Assignment</h6>
+                <ol>
+                {% for obj in stud %}
+                  <li>{{ obj.sid.first_name }} {{ obj.sid.last_name }}  <a href="{{ obj.sfile.url }}">Download Submission</a></li>
+                {% endfor %}
+                </ol>
+                </div>
+                <!--
+                <div style="float: right;">
+                  <h6>Following students have not the Assignment</h6>
+                  <ol>
+                  </ol>
+                </div>-->
+      {% else %}
           <br><br>
                 <div class="card" >
                   <div class="card-header">
                     Assignment
-                    {% if user.profile.typee == 'T' %}
-                    <div style="float: right;">
-                      <form action="{% url 'del_work' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" value="{{ obj.id }}" name = "announcement_id">
-                        <button style="border: none; color: red;"> <i class="fa fa-trash"></i> </button>
-                      </form>
-                    </div>
+                    <div style="float: right;"></div>
+                    {% if s_obj %}
+                      <p style="color: chartreuse; float: right;">Submitted</p>
+                    {% else %}
+                    <p style="color: crimson; float: right;"> Not Submitted</p>
                     {% endif %}
+                  </div>
                   </div>
                   <div class="card-body">
                     <p class="card-text">{{ a_obj.wname }}</p>
                     <a href="{{ a_obj.filess.url }}" style="float: left;">Download Attachment</a>
                     {% if s_obj %}
-                    <p style="color: chartreuse; float: right;">Submitted</p>
                     {% else %}
-                    <p style="color: crimson; float: right;"> Not Submitted</p>
                     <div class="text-center" style="float: right;">
                         <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#submit" style="border: rgba(0, 0, 0, 0.1  ) solid; color: rgba(0, 0, 0, 0.5);">Create Submittion</a>
                     </div>
                     {% endif %}
                 </div>
 
-    
+        {% endif %}
     </div>
     </div>
 

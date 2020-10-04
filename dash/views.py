@@ -16,6 +16,7 @@ class my_dictionary(dict):
     def add(self, key, value): 
         self[key] = value
 
+
 def user1(request):
     if request.user.is_authenticated:
         if request.user.profile.typee == 'S':
@@ -94,7 +95,7 @@ def submits(request,pkid,aid):
                 cont_obj.save()
             except:
                 print("Failed due to exception")
-                traceback.print_exc() 
+                traceback.print_exc()
             return redirect('/dash/user1/')
         return redirect('/dash/user1/')
     else:
@@ -113,9 +114,14 @@ def assignment(request,pkid,aid):
     if request.user.is_authenticated:
         obj = classsm.objects.get(pk=pkid)
         a_obj = classwork.objects.get(pk=aid)
+        students = submit.objects.filter(cwid=aid)
+        stud_c = students.count()
+        t = classsj.objects.filter(clid=pkid)
+        t_ctr = t.count()
+        n_stud = []
         uid = request.user.id
         s_obj = submit.objects.filter(cwid = aid,sid = uid)
-        context = {'data':obj,'a_obj':a_obj,'s_obj':s_obj}
+        context = {'data':obj,'a_obj':a_obj,'s_obj':s_obj,'stud':students,'stud_c':stud_c,'t_ctr':t_ctr,'t':n_stud}
         return render(request,'dash/assignment.html',context)
     else:
         return redirect('/account/login')
