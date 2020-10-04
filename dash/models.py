@@ -37,3 +37,12 @@ class submit(models.Model):
     stext = models.TextField()
     sfile = models.FileField(null=True)
     score = models.IntegerField(default = 0)
+    def delete(self, *args, **kwargs):
+        self.sfile.delete()
+        super().delete(*args, **kwargs)
+
+class qna(models.Model):
+    question = models.TextField()
+    tid = models.ForeignKey(User, on_delete=models.CASCADE)
+    answer = models.TextField(null=True)
+    subject=models.CharField(max_length=50,null=True)    
