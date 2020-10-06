@@ -48,76 +48,125 @@
 
 
 
-        <!-- Announcement form -->
-        <div class="modal fade" id="Announcement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <form action="#" method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header text-center">
-                  <h4 class="modal-title w-100 font-weight-bold">Make Questio</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-  
+        <!-- Question form -->
+        <div class="modal fade" id="question" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <form action="{% url 'q_ask' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Make Question</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+                               
                 <div class="modal-body mx-3">
-  
                   <div class="md-form mb-5">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="text" name="q" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email">Announcement</label>
-                  </div>
-                  
-                  <div class="md-form mb-4">
-                    <i class="fas fa-lock prefix grey-text"></i>
-                    <input type="file" name="announcement_doc" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Attachment (leave empty if none)</label>
-                  </div>
-                
+                <select id="subname" name="subname" class="form-control validate">
+                  <option value="math">maths</option>
+                  <option value="science">Science</option>
+                  <option value="so st">social</option>
+                  <option value="hindi">hindi</option>
+                </select>
+                <label for="subname">Subject</label>
                 </div>
-  
-                <div class="modal-footer d-flex justify-content-center">
-                  <input type="submit" class="btn btn-default" value="Post">
                 </div>
-  
+
+              <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                  <input type="text" name="qtxt" class="form-control validate">
+                  <label data-error="wrong" data-success="right" for="defaultForm-email">Question</label>
+                </div>              
               </div>
+
+              <div class="modal-footer d-flex justify-content-center">
+                <input type="submit" class="btn btn-default" value="Ask">
+              </div>
+
             </div>
-            </form>
           </div>
-  
+          </form>
+        </div>
 
 
-        <div class="dropdown show" style="float: left;">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Subjects
-            </a>
+
+        <div style="float: left;">
+        <form action="{% url 'qna' %}" method="POST">
+          {% csrf_token %}
+          <div style="float: left;">
+        <select id="subname" name="subname" class="form-control validate">
+          <option value="" >Select One</option>
+          <option id="math" name="math" value="math" >maths</option>
+          <option id="science" name="science" value="science">Science</option>
+          <option id="so st" name="so st" value="so st">social</option>
+          <option id="hindi" name="hindi" value="hindi">hindi</option>
+        </select></div>
+        <button class="btn btn-primary">Select</button>
+        </form>
+        </div>
           
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">List</a>
-              <a class="dropdown-item" href="#">of</a>
-              <a class="dropdown-item" href="#">Subjects</a>
-            </div>
-          </div>
+          {% if user.profile.typee == 'S' %}
           <div style="float: right;">
-            <div class="text-center" style="float: ;">
-                <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#Announcement">Ask Question    </a>
+            <div class="text-center">
+                <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#question">Ask Question    </a>
               </div>
           </div>
+        {% endif %}
+        
         <pre></pre><br><br>
         <!-- card -->
+        {% for obj in q %}
+
+
                 <div class="card" >
                   <div class="card-header">
-                    Announcement
+                    Question
                   </div>
                   <div class="card-body">
-                    <p class="card-text">ghg</p>
+                    {% if user.profile.typee == 'S' %}
+                    <div >
+                    <b class="card-text">{{ obj.question }}</b>
+                    <p class="card-text">{{ obj.answer }}</p>
+                    </div>
+                    {% endif %}
+                    {% if user.profile.typee == 'T' %}
+                    <div style="float: left;">
+                      <b class="card-text">{{ obj.question }}</b>
+                      <p class="card-text">{{ obj.answer }}</p>
+                      <p>Asked By {{ obj.sid.first_name }} {{ obj.sid.last_name }} on {{ obj.date }}</p>          
+                      </div>
+                    <div style="float: right;">
+
+                      <form action="{% url 'answer' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="pkid" value="{{ obj.id }}">
+
+                            <input type="text" name="atxt" class="form-control validate">
+                            <input type="submit" class="btn btn-primary" value="Answer">
+
+                      </form>
+                    </div>
+                    {% endif %}
+                    <br>
+                    {% if user.profile.typee == 'S' %}
+                    <div style="float: right;">
+                    <p>Asked By {{ obj.sid.first_name }} {{ obj.sid.last_name }} on {{ obj.date }}</p>
+                    </div>
+                    {% endif %}
                   </div>
                 </div>
-            	<br>
-</div>
+              <br>
+          {% endfor %}
+    </div>
     </div>
 
     </div>
     </div>
     </div>
+
+    <script src="{% static 'classroom/js/scriptclass.js' %}">  </script>
+
+</body>
+</html>

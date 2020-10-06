@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import classsm,classsj,work,classwork,submit,qna
+from .models import classsm,classsj,work,classwork,submit,qnas
 
 # Register your models here.
 
@@ -13,4 +13,4 @@ admin.site.register(classwork)
 
 admin.site.register(submit)
 
-admin.site.register(qna)
+admin.site.register(qnas)

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 import traceback 
-from .models import classsm,classsj,work,classwork,submit
+from .models import classsm,classsj,work,classwork,submit,qnas
 
 
 # Create your views here.
@@ -38,9 +38,55 @@ def user1(request):
     else:
         return redirect('/account/login')
 
+
+def answer(request):
+    if request.user.is_authenticated:
+        pkid = int(request.POST.get('pkid',False))
+        instance = qnas.objects.get(id=pkid)
+        instance.answer = request.POST.get('atxt',False)
+        instance.save()
+        return redirect('/dash/user1/')
+    else:
+        return redirect('/account/login')
+
+
 def qna(request):
     if request.user.is_authenticated:
-        return render(request,'dash/qnapanel.html')
+        if request.method == 'POST': 
+            subname = request.POST['subname']  
+            u = request.user
+            if(u.profile.typee == 'S'):
+                queryset = qnas.objects.filter(subject=subname).order_by('-date')
+            else:
+                queryset = qnas.objects.filter(subject=subname,answer = "No Answer Yet").order_by('-date')
+            return render(request,'dash/qnapanel.html',{'q':queryset})
+        else:
+            u = request.user
+            if(u.profile.typee == 'S'):
+                queryset = qnas.objects.filter(subject='math').order_by('-date')
+            else:
+                queryset = qnas.objects.filter(subject='math',answer = "No Answer Yet").order_by('-date')
+            return render(request,'dash/qnapanel.html',{'q':queryset})
+    else:
+        return redirect('/account/login')
+
+
+def q_ask(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST': 
+            subname = request.POST['subname']  
+            qtxt = request.POST['qtxt'] 
+            print(qtxt)     
+            print(subname)
+            
+            u = request.user
+            try:
+                cont_obj = qnas(question = qtxt, sid=u, subject=subname)
+                cont_obj.save()
+            except:
+                print("Failed due to exception")
+                traceback.print_exc()
+            return redirect('/dash/user1/')
     else:
         return redirect('/account/login')
 

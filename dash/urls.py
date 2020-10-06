@@ -17,5 +17,7 @@ urlpatterns = [
     path("assignment/<int:pkid>/<int:aid>",views.assignment,name="assignment"), 
     path("del_work",views.del_work,name="del_work"),
     path("eval_score",views.eval_score,name="eval_score"),
-    path("leave_class/<int:pkid>",views.leave_class,name="leave_class")
+    path("leave_class/<int:pkid>",views.leave_class,name="leave_class"),
+    path("q_ask/", views.q_ask, name = 'q_ask'),
+    path("answer/", views.answer, name = 'answer')
 ]

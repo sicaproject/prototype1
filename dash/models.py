@@ -41,8 +41,9 @@ class submit(models.Model):
         self.sfile.delete()
         super().delete(*args, **kwargs)
 
-class qna(models.Model):
+class qnas(models.Model):
     question = models.TextField()
-    tid = models.ForeignKey(User, on_delete=models.CASCADE)
-    answer = models.TextField(null=True)
+    sid = models.ForeignKey(User, on_delete=models.CASCADE)
+    answer = models.TextField(default="No Answer Yet")
     subject=models.CharField(max_length=50,null=True)    
+    date = models.DateTimeField(auto_now_add=False,auto_now = False,default = datetime.now(),blank = True)
