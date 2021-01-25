@@ -1,4 +1,4 @@
-# Learning Management System
+# Learning Managemenet System
 
 Project Name :-Learning Management System
 
@@ -26,5 +26,23 @@ E-R Model :-
 ![](/imagesofproject/DataModelforLMS.png)
 
 Tools and Technology used :- 
-1) For Front end development :-
 
+1) For Front end development :-
+  i)   HTML
+  ii)  CSS
+  iii) SCSS
+  iv)  JS
+  v)   Django Template Language
+  vi)  AJAX
+  
+2) For Back end Development :-
+  i)   Django
+  ii)  Python
+  
+3) Database Used :-
+  i)  For production :-  MySQL
+  ii) For development :- SQLite
+  
+4) Tools used :-
+  i)  Visual Studio Code
+  ii) MySQL Workbench
