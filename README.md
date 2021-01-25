@@ -1,4 +1,4 @@
-# Learning Managemenet System
+# Learning Management System
 
 Project Name :-Learning Management System
 
