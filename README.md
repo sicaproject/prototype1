@@ -27,22 +27,22 @@ E-R Model :-
 
 Tools and Technology used :- 
 
-1) For Front end development :-
-  i)   HTML
-  ii)  CSS
-  iii) SCSS
-  iv)  JS
-  v)   Django Template Language
-  vi)  AJAX
+1. For Front end development :-
+  * HTML
+  * CSS
+  * SCSS
+  * JS
+  * Django Template Language
+  * AJAX
   
-2) For Back end Development :-
-  i)   Django
-  ii)  Python
+1. For Back end Development :-
+  * Django
+  * Python
   
 3) Database Used :-
-  i)  For production :-  MySQL
-  ii) For development :- SQLite
+  * For production :-  MySQL
+  * For development :- SQLite
   
 4) Tools used :-
-  i)  Visual Studio Code
-  ii) MySQL Workbench
+  * Visual Studio Code
+  * MySQL Workbench
