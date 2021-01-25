@@ -1,4 +1,4 @@
-# Learning Management System
+# Learning Managemenet System
 
 Project Name :-Learning Management System
 
@@ -14,9 +14,17 @@ An online learning platform is a space or portal filled with educational content
 
 This online Learning Management System is a web-application which is developed specifically for SICA School. SICA S.S.School is a leading Co-Educational English Medium CBSE School in Indore(M.P),India.
 
+
 Use Case Model :-
 
-![](/imagesofproject/3-Figure1-1.png.png)
 
-Programming Language Used :-
+![](/imagesofproject/3-Figure1-1.png)
+
+E-R Model :- 
+
+
+![](/imagesofproject/DataModelforLMS.png)
+
+Tools and Technology used :- 
+1) For Front end development :-
 
